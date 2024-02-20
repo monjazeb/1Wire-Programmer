@@ -1,0 +1,35 @@
+{
+  "BAUD": 115200,
+  "PORT": "ttyUSB0",
+  "TIMEOUT": 0.5,
+  "CHIPS": {
+    "WIRE": {
+      "DS2506": {
+        "total": "64 kb",
+        "blocks": "256"
+      },
+      "DS2505": {
+        "total": "16 kb",
+        "blocks": "64"
+      },
+      "DS2502": {
+        "total": "1 kb",
+        "blocks": "4"
+      },
+      "DS2501": {
+        "total": "512 b",
+        "blocks": "2"
+      }
+    },
+    "EEPROM": {
+      "AM29F040B": {
+        "total": "4 Mb",
+        "blocks": "16384"
+      },
+      "AM29F010B": {
+        "total": "1 Mb",
+        "blocks": "4096"
+      }
+    }
+  }
+}
