@@ -319,7 +319,7 @@ void write_rom() {
     Serial.readBytes(buf, block_size);
     for (int i=0; i<block_size; i++){
       write_byte(0xAA, 0x5555);
-      write_byte(0x55, 0x2AAA);
+      write_byte(0x55, 0xAAAA);
       write_byte(0xA0, 0x5555);
       write_byte(buf[i], a*block_size + i);
       delayMicroseconds(30);
