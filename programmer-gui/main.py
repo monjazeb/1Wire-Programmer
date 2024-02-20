@@ -259,6 +259,7 @@ if __name__ == '__main__':
     main_window.show()
     app.exec_()
 
+m = 0xd35400
 
 # try:
 #     pr = serial.Serial(port='/dev/ttyUSB0', baudrate=115200, timeout=0.1)
@@ -274,5 +275,3 @@ if __name__ == '__main__':
 #         f.write(s)
 # except PermissionError:
 #     print('permission')
-
-
