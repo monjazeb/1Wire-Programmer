@@ -1,7 +1,7 @@
 {
   "BAUD": 115200,
-  "PORT": "ttyUSB0",
-  "TIMEOUT": 0.5,
+  "PORT": "COM3",
+  "TIMEOUT": 1.0,
   "CHIPS": {
     "WIRE": {
       "DS2506": {
@@ -22,6 +22,10 @@
       }
     },
     "EEPROM": {
+      "test": {
+        "total": "1600 b",
+        "blocks": "50"
+      },
       "AM29F040B": {
         "total": "4 Mb",
         "blocks": "16384"
