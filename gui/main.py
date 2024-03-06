@@ -28,6 +28,7 @@ def load_settings():
 
 class AddChipDialog(QDialog):
     global settings
+
     def __init__(self):
         super().__init__()
         self.setWindowTitle("Add new Chip")
@@ -117,14 +118,13 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.port_combo.addItems([port.name for port in list_ports.comports()])
         self.statusbar.showMessage('Refreshing COM ports...Done.', 2000)
 
-    def show_about(self):
+    @staticmethod
+    def show_about():
         msg = QMessageBox()
         msg.setWindowTitle('About Us...')
         msg.setText('ARM Programmer')
         msg.setInformativeText('Arpa Medical Co')
-        # msg.setIcon(QMessageBox.Information)
-        img = QPixmap('logo.jpeg').scaled(50, 50)
-        msg.setIconPixmap(img)
+        msg.setIconPixmap(QPixmap('full-logo.png').scaled(100, 50))
         cl = f"{','.join(list(settings['CHIPS']['WIRE'].keys()) + list(settings['CHIPS']['EEPROM'].keys()))}"
         msg.setDetailedText('This Application can program 1Wire and EEPROM Chips. Currently supported chips are: ' + cl)
         msg.setStandardButtons(QMessageBox.Close)
