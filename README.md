@@ -22,3 +22,4 @@ I used [mint64](https://mint64.home.blog/2018/07/29/parallel-nor-flash-eeprom-pr
 ## Todo
 - [ ] Complete Readme.md file for help
 - [ ] :tada:
+- [ ] @github/monjazeb Is it OK?
