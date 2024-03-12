@@ -41,11 +41,14 @@ class AddChipDialog(QDialog):
         self.category = QComboBox(self)
         self.category.addItems(settings.get("CHIPS", {}).keys())
         self.name = QLineEdit(self)
+        self.cid = QLineEdit(self)
         self.total = QLineEdit(self)
         self.layout.addWidget(QLabel("Chip type:"))
         self.layout.addWidget(self.category)
         self.layout.addWidget(QLabel("Chip name:"))
         self.layout.addWidget(self.name)
+        self.layout.addWidget(QLabel("Chip ID:"))
+        self.layout.addWidget(self.cid)
         self.layout.addWidget(QLabel("Total Memory:"))
         self.layout.addWidget(self.total)
         self.layout.addWidget(self.buttonBox)
@@ -55,13 +58,14 @@ class AddChipDialog(QDialog):
         category = self.category.currentText()
         name = self.name.text()
         total = self.total.text()
+        cid = self.cid.text()
         try:
             b = {'B': 1, 'b': 1 / 8}.get(total[-1], 1)
             f = {'k': 1024, 'm': 1024 * 1024}.get(total[-2].lower(), 1)
             t = int(total.split(' ')[0])
             if (t * f * b) % BUFFER_SIZE == 0:
                 blocks = str(int(t * f * b / BUFFER_SIZE))
-                settings["CHIPS"][category][name] = {"total": total, "blocks": blocks}
+                settings["CHIPS"][category][name] = {"id": cid, "total": total, "blocks": blocks}
                 with open('settings.json', 'w') as f:
                     json.dump(settings, f, indent=2)
         except IndexError or FileNotFoundError:
@@ -197,7 +201,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                     sleep(1)
                     print(self.pr.readall())
                     sleep(1)
-                    self.pr.write(b':R1')
+                    self.pr.write(b':R')
                     sleep(1)
                     with open(file_name, 'bw') as file:
                         file.write(self.pr.readall())
@@ -223,7 +227,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                 sleep(1)
                 print(self.pr.readall())
                 sleep(1)
-                self.pr.write(b':W1')
+                self.pr.write(b':W')
                 sleep(1)
                 with open(file_name, 'br') as file:
                     self.pr.write(file.read())
